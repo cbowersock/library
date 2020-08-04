@@ -1,0 +1,13 @@
+.tile {
+	display: flex;
+    width: 200px;
+    height: 400px;
+	text-align: center;
+	border-style: solid;
+	margin-left: 300px;
+	margin-right: 75px;
+	margin-bottom: 30px;
+	background: linear-gradient(#e6a7ca, #8ec8d3 80%);
+	padding: 10px 20px 10px 20px;
+	border-radius: 15px;
+}
