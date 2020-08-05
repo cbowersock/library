@@ -7,10 +7,12 @@ let author = document.getElementById('author');
 let pages = document.getElementById('pages');
 let good = document.getElementById('good');
 
-Book.prototype.giveInfo = function() {
+let form = document.getElementById('form');
+
+Book.prototype.giveInfo = function () {
     if (this.good == true) {
         return `${this.title} by ${this.author}, ${this.pages} pages long. It's good.`;
-    } 
+    }
     else {
         return `${this.title} by ${this.author}, ${this.pages} pages long. Not good.`;
     }
@@ -23,8 +25,28 @@ function Book(title, author, pages, good) {
     this.good = good
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
+let lotr = new Book('Lord of the Rings', 'JK Tolkien', 600, true);
+let hp = new Book('Harold Patter', 'JK Roling', 400, false);
+
+button.addEventListener('click', () => {
+    let newBook = new Book(title.value, author.value, pages.value, good.checked);
+    addBookToLibrary(newBook);
+    createSingleTile(newBook);
+    form.reset();
+})
+
+function createSingleTile(book) {
+    let deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    let tile = document.createElement('div');
+    tile.classList.add('tile');
+    tile.textContent = book.giveInfo();
+    books.appendChild(tile);
+    // tile.appendChild('<br/>');
+    tile.appendChild(deleteButton);
+    deleteButton.addEventListener('click', () => {
+        books.removeChild(tile);
+    })
 }
 
 function createBookTiles() {
@@ -33,22 +55,12 @@ function createBookTiles() {
     })
 }
 
-let lotr = new Book('lord of the rings', 'ba ba bano', 100, false);
-let hp = new Book('harold patter', 'jk roling', 100, false);
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+}
 
-button.addEventListener('click', () => {
-    console.log(title.value);
-    let newBook = new Book(title.value, author.value, pages.value, false);
-    addBookToLibrary(newBook);
-    createSingleTile(book);
-    console.log(book);
-})
+function createDeleteButton() {
 
-function createSingleTile(book) {
-    let tile = document.createElement('div');
-    tile.classList.add('tile')
-    tile.textContent = book.giveInfo();
-    books.appendChild(tile);
 }
 
 addBookToLibrary(lotr);
